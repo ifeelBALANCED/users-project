@@ -1,4 +1,10 @@
+import {lazy} from "react";
 
+const SignUp = lazy(() => import("../pages/signup"));
+const SignIn = lazy(() => import("../pages/signin"));
+const Dashboard = lazy(() => import("../pages/dashboard"));
+const Users = lazy(() => import("../pages/users"));
+const Profiles = lazy(() => import("../pages/profiles"));
 export const routes = [
   {
     id: "25194d77-0277-44f6-8ac9-ae35ef682eac",

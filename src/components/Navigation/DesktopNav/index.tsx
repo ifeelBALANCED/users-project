@@ -1,22 +1,20 @@
-import {Box, Link, Popover, PopoverContent, PopoverTrigger, Stack, useColorModeValue} from "@chakra-ui/react";
-import { NAV_ITEMS } from "../helpers";
-import {DesktopSubNav} from "../index";
+import {Box, Link, Popover, PopoverTrigger, Stack, useColorModeValue} from "@chakra-ui/react";
+import {NAV_ITEMS} from "../helpers";
 import React, {FC} from "react";
 
 export const DesktopNav: FC = () => {
     const linkColor = useColorModeValue('gray.600', 'gray.200');
     const linkHoverColor = useColorModeValue('gray.800', 'white');
-    const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
     return (
         <Stack direction={'row'} spacing={4}>
-            {NAV_ITEMS.map((navItem) => (
-                <Box key={navItem.label}>
+            {NAV_ITEMS.map(({label, href}) => (
+                <Box key={label}>
                     <Popover trigger={'hover'} placement={'bottom-start'}>
                         <PopoverTrigger>
                             <Link
                                 p={2}
-                                href={navItem.href ?? '#'}
+                                href={href ?? '#'}
                                 fontSize={'sm'}
                                 fontWeight={500}
                                 color={linkColor}
@@ -24,25 +22,9 @@ export const DesktopNav: FC = () => {
                                     textDecoration: 'none',
                                     color: linkHoverColor,
                                 }}>
-                                {navItem.label}
+                                {label}
                             </Link>
                         </PopoverTrigger>
-
-                        {navItem.children && (
-                            <PopoverContent
-                                border={0}
-                                boxShadow={'xl'}
-                                bg={popoverContentBgColor}
-                                p={4}
-                                rounded={'xl'}
-                                minW={'sm'}>
-                                <Stack>
-                                    {navItem.children.map((child) => (
-                                        <DesktopSubNav key={child.label} {...child} />
-                                    ))}
-                                </Stack>
-                            </PopoverContent>
-                        )}
                     </Popover>
                 </Box>
             ))}

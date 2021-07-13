@@ -3,14 +3,14 @@ import {NavItem} from "../../types";
 export const NAV_ITEMS: NavItem[] = [
     {
         label: 'Profiles',
-        href: '',
+        href: '/profiles',
     },
     {
         label: 'Dashboard',
-        href: '#',
+        href: '/dashboard',
     },
     {
         label: 'Users',
-        href: '#',
+        href: '/users',
     },
 ];

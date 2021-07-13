@@ -5,7 +5,7 @@ import {
     ModalContent,
     ModalBody,
 } from "@chakra-ui/react"
-import {ModalForm} from "../ModalForm";
+import {AddForm} from "./AddForm";
 
 type AddModalProps = {
     isOpen: boolean
@@ -21,7 +21,7 @@ export const AddModal: FC<AddModalProps> = ({isOpen, onClose}) => {
             <ModalOverlay/>
             <ModalContent>
                 <ModalBody>
-                    <ModalForm onClose={onClose} />
+                    <AddForm onClose={onClose} />
                 </ModalBody>
             </ModalContent>
         </Modal>

@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "effector-logger/babel-plugin",
+    [
+      "effector/babel-plugin",
+      {
+        "addLoc": true
+      }
+    ]
+  ]
+}

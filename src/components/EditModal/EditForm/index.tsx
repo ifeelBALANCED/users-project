@@ -1,9 +1,8 @@
 import {
-    setNewName,
-    setNewGender,
-    setNewBirthdate,
-    setNewCity,
-    addProfile, clearInputs
+    clearInputs, updateProfileBirthdate,
+    updateProfileCity,
+    updateProfileGender,
+    updateProfileName
 } from "../../../entities/profiles-list/model/events";
 import {$profiles} from "../../../entities/profiles-list/model/store";
 import {CheckIcon, SmallCloseIcon} from "@chakra-ui/icons";
@@ -13,12 +12,13 @@ import React, {FC, FormEvent} from 'react';
 import {useStore} from "effector-react";
 import Form from "../../Form";
 
-type ModalFormProps = {
+type EditFormProps = {
+    id: number
     onClose: () => void
 }
-export const ModalForm: FC<ModalFormProps> = ({onClose}) => {
+export const EditForm: FC<EditFormProps> = ({onClose, id}) => {
     const {newName, newGender, newBirthdate, newCity} = useStore($profiles)
-    const onModalSubmit = (e: FormEvent<HTMLElement>): void => {
+    const onEditFormSubmit = (e: FormEvent<HTMLElement>): void => {
         e.preventDefault()
         clearInputs()
     }
@@ -27,32 +27,40 @@ export const ModalForm: FC<ModalFormProps> = ({onClose}) => {
     const disableBirth = !newBirthdate.length
     const disableButton = !newCity.length
     return (
-        <Form onSubmit={onModalSubmit} pt="70px">
+        <Form onSubmit={onEditFormSubmit} pt="70px">
             <FormInput
                 text="name:"
                 value={newName}
-                onChange={({target: {value}}) => setNewName(value)}
+                onChange={({target: {value}}) => updateProfileName({
+                    id, name: value
+                })}
                 placeholder="Enter name..."
             />
             <FormInput
                 text="gender:"
                 value={newGender}
                 disabled={disableName}
-                onChange={({target: {value}}) => setNewGender(value)}
+                onChange={({target: {value}}) => updateProfileGender({
+                    id, gender: value
+                })}
                 placeholder="Enter gender..."
             />
             <FormInput
                 text="birthdate:"
                 value={newBirthdate}
                 disabled={disableGender}
-                onChange={({target: {value}}) => setNewBirthdate(value)}
+                onChange={({target: {value}}) => updateProfileBirthdate({
+                    id, birthdate: value
+                })}
                 type="date"
             />
             <FormInput
                 text="city:"
                 value={newCity}
                 disabled={disableBirth}
-                onChange={({target: {value}}) => setNewCity(value)}
+                onChange={({target: {value}}) => updateProfileCity({
+                    id, city: value
+                })}
                 placeholder="Enter city..."
             />
             <Flex
@@ -65,10 +73,6 @@ export const ModalForm: FC<ModalFormProps> = ({onClose}) => {
                     colorScheme="teal"
                     variant="outline"
                     disabled={disableButton}
-                    onClick={() => {
-                        addProfile()
-                        onClose()
-                    }}
                     type="submit"
                     w="100px"
                 >

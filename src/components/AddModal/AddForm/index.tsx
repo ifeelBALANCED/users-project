@@ -13,12 +13,12 @@ import React, {FC, FormEvent} from 'react';
 import {useStore} from "effector-react";
 import Form from "../../Form";
 
-type ModalFormProps = {
+type AddFormProps = {
     onClose: () => void
 }
-export const ModalForm: FC<ModalFormProps> = ({onClose}) => {
+export const AddForm: FC<AddFormProps> = ({onClose}) => {
     const {newName, newGender, newBirthdate, newCity} = useStore($profiles)
-    const onModalSubmit = (e: FormEvent<HTMLElement>): void => {
+    const onAddFormSubmit = (e: FormEvent<HTMLElement>): void => {
         e.preventDefault()
         clearInputs()
     }
@@ -27,7 +27,7 @@ export const ModalForm: FC<ModalFormProps> = ({onClose}) => {
     const disableBirth = !newBirthdate.length
     const disableButton = !newCity.length
     return (
-        <Form onSubmit={onModalSubmit} pt="70px">
+        <Form onSubmit={onAddFormSubmit} pt="70px">
             <FormInput
                 text="name:"
                 value={newName}

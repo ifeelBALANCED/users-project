@@ -5,23 +5,24 @@ import {
     ModalContent,
     ModalBody,
 } from "@chakra-ui/react"
-import {ModalForm} from "./ModalForm";
+import {EditForm} from "./EditForm";
 
-type AddModalProps = {
-    isOpen: boolean
-    onClose: () => void
+type EditModalProps = {
+    isEditOpen: boolean
+    onEditOpen: () => void
+    onEditClose: () => void
 }
-export const AddModal: FC<AddModalProps> = ({isOpen, onClose}) => {
+export const EditModal: FC<EditModalProps> = ({isEditOpen, onEditOpen, onEditClose}) => {
     return (
         <Modal
-            isOpen={isOpen}
-            onClose={onClose}
+            isOpen={isEditOpen}
+            onClose={onEditOpen}
             size="xl"
         >
             <ModalOverlay/>
             <ModalContent>
                 <ModalBody>
-                    <ModalForm onClose={onClose} />
+                    <EditForm id={1} onClose={onEditClose} />
                 </ModalBody>
             </ModalContent>
         </Modal>
