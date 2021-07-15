@@ -5,7 +5,7 @@ import {
     setNewCity,
     addProfile, clearInputs
 } from "../../../entities/profiles-list/model/events";
-import {$profiles} from "../../../entities/profiles-list/model/store";
+import {$addFormValues} from "../../../entities/profiles-list/model/store";
 import {CheckIcon, SmallCloseIcon} from "@chakra-ui/icons";
 import {Button, Flex} from "@chakra-ui/react";
 import FormInput from "../../../shared/ui/input";
@@ -17,7 +17,7 @@ type AddFormProps = {
     onClose: () => void
 }
 export const AddForm: FC<AddFormProps> = ({onClose}) => {
-    const {newName, newGender, newBirthdate, newCity} = useStore($profiles)
+    const {newName, newGender, newBirthdate, newCity} = useStore($addFormValues)
     const onAddFormSubmit = (e: FormEvent<HTMLElement>): void => {
         e.preventDefault()
         clearInputs()

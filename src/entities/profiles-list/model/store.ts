@@ -82,7 +82,7 @@ export const updateCity = (
 const profilesLocalStorage = connectLocalStorage("profiles")
     .onError((err) => console.log(err))
 
-export const $profiles = createStore<Store>(profilesLocalStorage.init({
+export const $addFormValues = createStore<Store>(profilesLocalStorage.init({
     profiles: [],
     newName: "",
     newGender: "",
@@ -168,6 +168,6 @@ export const $profiles = createStore<Store>(profilesLocalStorage.init({
         ),
     }))
 
-$profiles.reset(clearInputs)
+$addFormValues.reset(clearInputs)
 
-$profiles.watch(profilesLocalStorage)
+$addFormValues.watch(profilesLocalStorage)

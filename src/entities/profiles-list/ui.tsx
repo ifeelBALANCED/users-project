@@ -1,13 +1,13 @@
 import {Flex, Text, useDisclosure} from "@chakra-ui/react";
 import CardNew from "../../components/CardNew";
 import ProfileItem from "../profile-item/ui";
-import {$profiles} from "./model/store";
+import {$addFormValues} from "./model/store";
 import {useStore} from "effector-react";
 import React, {FC} from 'react';
 import {v4} from "uuid"
 
 export const ProfilesList: FC = () => {
-    const {profiles} = useStore($profiles)
+    const {profiles} = useStore($addFormValues)
     const {isOpen, onOpen, onClose} = useDisclosure()
     const {isOpen: isEditOpen, onOpen: onEditOpen, onClose: onEditClose} = useDisclosure()
     const profileItems = profiles.map((profile, idx) => {
